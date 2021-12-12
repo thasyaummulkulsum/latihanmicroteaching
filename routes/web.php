@@ -14,15 +14,13 @@ use App\Http\Controllers\PostController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
 
 // Route::get('/dashboard', function () {
 //     return view('dashboard');
 // })->middleware(['auth'])->name('dashboard');
 
-Route::get('/dashboard', [PostController::class, 'index'])->name('dashboard');
+Route::get('/', [PostController::class, 'index'])->name('dashboard');
 Route::post('/post', [PostController::class, 'store'])->name('post');
 Route::delete('/delete/{item:id}',  [PostController::class, 'destroy']);
 Route::get('/update/{item:id}', [PostController::class, 'edit']);

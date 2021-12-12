@@ -16,7 +16,7 @@ class PostController extends Controller
     {
         $post = Post::orderBy('updated_at', 'DESC')->get();
 
-        return view('dashboard', compact('post'));
+        return view('welcome', compact('post'));
     }
 
     /**
@@ -38,7 +38,7 @@ class PostController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'title' => 'required|max:50',
+            'title' => 'required|max:5',
         ]);
 
         $post = new Post;
@@ -46,7 +46,7 @@ class PostController extends Controller
         $post->title = $request['title'];
         $post->save();
 
-        return redirect('/dashboard');
+        return redirect('/');
     }
 
     /**
@@ -94,7 +94,7 @@ class PostController extends Controller
         $post->title = $request['title'];
         $post->save();
 
-        return redirect('/dashboard');
+        return redirect('/');
 
     }
 
@@ -105,10 +105,10 @@ class PostController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
-    {
+    { 
         $post = Post::find($id);
         $post->delete();
 
-        return redirect('/dashboard');
+        return redirect('/');
     }
 }
